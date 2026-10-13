@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopKart | Online Shopping</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        ShopKart
+        <small>Explore Plus ✨</small>
+    </div>
+
+    <input type="search" id="search"
+           placeholder="Search for products, brands and more">
+
+    <div class="nav-actions">
+        <button onclick="openModal('loginModal')" class="login-btn">
+            Login
+        </button>
+
+        <button onclick="openModal('signupModal')" class="signup-btn">
+            Sign Up
+        </button>
+
+        <button onclick="showCart()" class="nav-btn">
+            🛒 Cart <span id="cartCount">0</span>
+        </button>
+
+        <div class="profile-menu">
+            <button class="nav-btn" onclick="toggleMenu()">
+                👤 Account ▾
+            </button>
+
+            <div class="dropdown" id="dropdown">
+                <button onclick="showProfile()">👤 My Profile</button>
+                <button onclick="showOrders()">📦 My Orders</button>
+                <button onclick="openModal('settingsModal')">⚙️ Settings</button>
+                <button onclick="logout()">🚪 Logout</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="categories">
+    <button onclick="filterCategory('All')">🏠 All Products</button>
+    <button onclick="filterCategory('electronics')">📱 Electronics</button>
+    <button onclick="filterCategory('jewelery')">💍 Jewellery</button>
+    <button onclick="filterCategory(&quot;men's clothing&quot;)">👔 Men's Fashion</button>
+    <button onclick="filterCategory(&quot;women's clothing&quot;)">👗 Women's Fashion</button>
+</nav>
+
+<section class="banner">
+    <div>
+        <span class="offer">SPECIAL SHOPPING OFFER</span>
+        <h1>Big Shopping Days!</h1>
+        <h2>Find Your Favourite Products</h2>
+        <p>Fashion, electronics, accessories and more at great prices.</p>
+        <button class="shop-btn"
+                onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+            Shop Now →
+        </button>
+    </div>
+    <div class="banner-art">🛍️</div>
+</section>
+
+<section class="benefits">
+    <div>🚚 <b>Easy Shopping</b><small>Browse products online</small></div>
+    <div>💰 <b>Great Deals</b><small>Discover popular products</small></div>
+    <div>🛡️ <b>Secure Demo</b><small>Frontend demonstration</small></div>
+    <div>🎧 <b>Customer Support</b><small>Shopping made simple</small></div>
+</section>
+
+<main>
+    <div class="section-heading">
+        <div>
+            <h2>Best Deals For You ⚡</h2>
+            <p id="status">Loading products...</p>
+        </div>
+
+        <select id="sort" onchange="sortProducts()">
+            <option value="default">Sort By</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+            <option value="name">Name: A to Z</option>
+        </select>
+    </div>
+
+    <div id="products" class="product-grid"></div>
+</main>
+
+<footer>
+    <h2>ShopKart</h2>
+    <p>Your favourite products, all in one place.</p>
+    <p>About Us | Contact | Help | Privacy Policy</p>
+    <small>Educational frontend project. Not affiliated with Flipkart.</small>
+</footer>
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+    <div class="modal-box">
+        <button class="close" onclick="closeModals()">×</button>
+        <h2>Welcome Back!</h2>
+        <p>Login to your ShopKart account</p>
+
+        <form onsubmit="loginUser(event)">
+            <label>Email</label>
+            <input type="email" id="loginEmail" required
+                   placeholder="Enter your email">
+
+            <label>Password</label>
+            <input type="password" id="loginPassword" required
+                   minlength="4" placeholder="Enter your password">
+
+            <button class="primary-btn" type="submit">Login</button>
+        </form>
+
+        <p class="switch-text">
+            New here?
+            <a href="#" onclick="switchModal('loginModal','signupModal')">Create an account</a>
+        </p>
+        <p id="loginMessage" class="message"></p>
+    </div>
+</div>
+
+<!-- SIGN UP MODAL -->
+<div class="modal" id="signupModal">
+    <div class="modal-box">
+        <button class="close" onclick="closeModals()">×</button>
+        <h2>Create Account</h2>
+        <p>Join ShopKart today!</p>
+
+        <form onsubmit="signupUser(event)">
+            <label>Full Name</label>
+            <input type="text" id="signupName" required
+                   placeholder="Enter your name">
+
+            <label>Email</label>
+            <input type="email" id="signupEmail" required
+                   placeholder="Enter your email">
+
+            <label>Password</label>
+            <input type="password" id="signupPassword" required
+                   minlength="4" placeholder="Create a password">
+
+            <button class="primary-btn" type="submit">Sign Up</button>
+        </form>
+
+        <p class="switch-text">
+            Already registered?
+            <a href="#" onclick="switchModal('signupModal','loginModal')">Login</a>
+        </p>
+        <p id="signupMessage" class="message"></p>
+    </div>
+</div>
+
+<!-- PROFILE MODAL -->
+<div class="modal" id="profileModal">
+    <div class="modal-box">
+        <button class="close" onclick="closeModals()">×</button>
+        <h2>My Profile 👤</h2>
+
+        <div class="avatar">👤</div>
+        <h3 id="profileName">Guest User</h3>
+        <p id="profileEmail">Not logged in</p>
+
+        <button class="primary-btn" onclick="closeModals()">
+            Done
+        </button>
+    </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal" id="settingsModal">
+    <div class="modal-box">
+        <button class="close" onclick="closeModals()">×</button>
+        <h2>Settings ⚙️</h2>
+
+        <label>Display Theme</label>
+        <select id="themeSelect" onchange="changeTheme()">
+            <option value="light">Light Mode</option>
+            <option value="dark">Dark Mode</option>
+        </select>
+
+        <label>Text Size</label>
+        <select id="fontSelect" onchange="changeFont()">
+            <option value="16">Default</option>
+            <option value="18">Large</option>
+            <option value="20">Extra Large</option>
+        </select>
+
+        <button class="primary-btn" onclick="closeModals()">Save / Close</button>
+    </div>
+</div>
+
+<!-- CART MODAL -->
+<div class="modal" id="cartModal">
+    <div class="modal-box cart-box">
+        <button class="close" onclick="closeModals()">×</button>
+        <h2>🛒 My Shopping Cart</h2>
+        <div id="cartItems"></div>
+        <h3 id="cartTotal">Total: ₹0</h3>
+        <button class="primary-btn" onclick="checkout()">Proceed to Checkout</button>
+        <button class="secondary-btn" onclick="closeModals()">Continue Shopping</button>
+    </div>
+</div>
+
+<!-- ORDERS MODAL -->
+<div class="modal" id="ordersModal">
+    <div class="modal-box">
+        <button class="close" onclick="closeModals()">×</button>
+        <h2>📦 My Orders</h2>
+        <p id="ordersMessage">You have no orders yet.</p>
+        <button class="primary-btn" onclick="closeModals()">Close</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

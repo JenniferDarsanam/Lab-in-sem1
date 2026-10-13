@@ -1,0 +1,554 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f1f3f6;
+    color: #212121;
+    font-size: 16px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.navbar {
+    background: #2874f0;
+    color: white;
+    padding: 14px 4%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.logo small {
+    display: block;
+    color: #ffe500;
+    font-size: 11px;
+}
+
+#search {
+    flex: 1;
+    min-width: 180px;
+    max-width: 450px;
+    padding: 13px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.nav-actions button {
+    border: none;
+    padding: 11px 13px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login-btn {
+    background: white;
+    color: #2874f0;
+}
+
+.signup-btn {
+    background: #ffeb3b;
+    color: #222;
+}
+
+.nav-btn {
+    background: transparent;
+    color: white;
+}
+
+.profile-menu {
+    position: relative;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 45px;
+    width: 190px;
+    background: white;
+    box-shadow: 0 5px 18px #bbb;
+    border-radius: 6px;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.dropdown.show {
+    display: block;
+}
+
+.dropdown button {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    background: white;
+    color: #333;
+    text-align: left;
+    border-radius: 0;
+}
+
+.dropdown button:hover {
+    background: #edf3ff;
+}
+
+.categories {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    padding: 18px;
+    background: white;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 5px #ddd;
+}
+
+.categories button {
+    background: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.categories button:hover {
+    color: #2874f0;
+}
+
+.banner {
+    margin: 20px;
+    padding: 35px 6%;
+    min-height: 215px;
+    background: linear-gradient(110deg, #dceaff, #e9ddff, #fff0d8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+}
+
+.offer {
+    color: #2874f0;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.banner h1 {
+    font-size: 36px;
+    margin: 12px 0;
+    color: #172337;
+}
+
+.banner h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.banner p {
+    margin-bottom: 18px;
+    color: #555;
+}
+
+.banner-icon {
+    font-size: 90px;
+}
+
+.shop-btn,
+.primary-btn {
+    background: #2874f0;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.benefits {
+    margin: 20px;
+    padding: 22px;
+    background: white;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    border-radius: 6px;
+}
+
+.benefits div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.benefits small {
+    color: #777;
+}
+
+main {
+    margin: 20px;
+    padding: 22px;
+    background: white;
+    border-radius: 6px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.section-heading h2 {
+    margin-bottom: 8px;
+}
+
+#status {
+    color: #777;
+    font-size: 14px;
+}
+
+#sort,
+.modal-box select {
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: white;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.product-card {
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 7px;
+    min-width: 0;
+    transition: 0.25s;
+}
+
+.product-card:hover {
+    box-shadow: 0 5px 18px #ddd;
+    transform: translateY(-3px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 165px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-size: 15px;
+    height: 45px;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.price {
+    color: #16833a;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.category {
+    color: #777;
+    text-transform: capitalize;
+    font-size: 13px;
+    min-height: 30px;
+    margin-bottom: 10px;
+}
+
+.add-btn {
+    width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 4px;
+    background: #ff9f00;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background: #fb8c00;
+}
+
+footer {
+    background: #172337;
+    color: white;
+    text-align: center;
+    padding: 28px;
+    line-height: 2;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-box {
+    position: relative;
+    background: white;
+    color: #222;
+    width: 100%;
+    max-width: 400px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px #3335;
+}
+
+.modal-box h2 {
+    margin-bottom: 10px;
+    color: #2874f0;
+}
+
+.modal-box > p {
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.modal-box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-box label {
+    margin: 13px 0 6px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.modal-box input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.modal-box form .primary-btn {
+    margin-top: 20px;
+}
+
+.switch-text {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.switch-text a {
+    color: #2874f0;
+}
+
+.message {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.avatar {
+    margin: 20px auto;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: #e2edff;
+    display: grid;
+    place-items: center;
+    font-size: 35px;
+}
+
+#profileName,
+#profileEmail {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.modal-box > .primary-btn,
+.modal-box > select {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.cart-box {
+    max-width: 500px;
+}
+
+.cart-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-row span {
+    font-size: 14px;
+}
+
+.remove-btn {
+    border: none;
+    background: #ffe5e5;
+    color: #b00;
+    padding: 7px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cart-box h3 {
+    margin: 20px 0;
+}
+
+.secondary-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 11px;
+    background: #eee;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+body.dark {
+    background: #171923;
+    color: #eee;
+}
+
+body.dark main,
+body.dark .benefits,
+body.dark .categories {
+    background: #252a38;
+    color: #eee;
+}
+
+body.dark .categories button {
+    background: transparent;
+    color: #eee;
+}
+
+body.dark .product-card {
+    border-color: #454b5b;
+    background: #252a38;
+}
+
+body.dark .product-card h3 {
+    color: #fff;
+}
+
+body.dark .modal-box {
+    background: #252a38;
+    color: #fff;
+}
+
+body.dark .modal-box h2 {
+    color: #7caeff;
+}
+
+@media (max-width: 1100px) {
+    .product-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .benefits {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .navbar {
+        padding: 15px;
+    }
+
+    #search {
+        order: 3;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .nav-actions {
+        gap: 4px;
+    }
+
+    .nav-actions button {
+        padding: 9px;
+    }
+
+    .banner {
+        margin: 10px;
+        padding: 22px;
+    }
+
+    .banner h1 {
+        font-size: 27px;
+    }
+
+    .banner h2 {
+        font-size: 16px;
+    }
+
+    .banner-icon {
+        font-size: 45px;
+    }
+
+    .benefits {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    main {
+        margin: 10px;
+        padding: 12px;
+    }
+
+    .categories {
+        gap: 15px;
+    }
+}
